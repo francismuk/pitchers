@@ -1,0 +1,23 @@
+{% extends 'bootstrap/base.html'%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% if title %}
+        <title> {{ title }}</title>
+        {% else %}
+        <title> Welcome to the best Idea Pitching Website </title>
+        {% endif %}
+    </head>
+    <body>
+        <!--Navabar block-->
+        {% block navbar %}
+           {% include 'navbar.html' %}
+        {%endblock%}
+        <!-- Content block -->
+
+        {% block content %}
+
+        {% endblock%}
+    </body>
+</html>

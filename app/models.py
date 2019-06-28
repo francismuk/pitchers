@@ -8,51 +8,41 @@ from datetime import datetime
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-class Movie:
+class Category(db.Model):
     '''
-    Movie class to define Movie Objects
+    Group class to define the categories for pitches
     '''
 
-    def __init__(self,id,title,description,vote_count):
-        self.id =id
-        self.title = title
-        self.description = description
-        self.vote_count = vote_count
+    # Name of the table
+    __tablename__ = 'category'
 
+    # id column that is the primary key
+    id = db.Column(db.Integer, primary_key = True)
+    
+    # name column for names of categories
+    name = db.Column(db.String(255))
 
+    # relationship between group and line class
+    lines = db.relationship('Line', backref='category', lazy='dynamic')
 
-class Review(db.Model):
-
-    __tablename__ = 'posts'
-
-    id = db.Column(db.Integer,primary_key = True)
-    post_id = db.Column(db.Integer)
-    post_title = db.Column(db.String)
-    post_review = db.Column(db.String)
-    posted = db.Column(db.DateTime,default=datetime.utcnow)
-    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
-
-
-    def save_review(self):
+    def save_group(self):
+        '''
+        Function that saves a new category to the groups table
+        '''
         db.session.add(self)
         db.session.commit()
 
     @classmethod
-    def get_reviews(cls,id):
-        reviews = Review.query.filter_by(post_id=id).all()
-        return reviews
+    def get_groups(cls):
+        '''
+        Function that queries the Groups Table in the database and returns all the information from the Groups Table
+        Returns:
+            groups : all the information in the groups table
+        '''
 
-    @classmethod
-    def clear_reviews(cls):
-        Review.all_reviews.clear()
+        groups = Group.query.all()
 
-    
-        for review in cls.all_reviews:
-            if review.movie_id == id:
-                response.append(review)
-
-        return response
-
+        return groups
 
 
 class User(UserMixin,db.Model):
@@ -61,11 +51,11 @@ class User(UserMixin,db.Model):
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255),index = True)
     email = db.Column(db.String(255),unique = True,index = True)
-    role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     password_hash = db.Column(db.String(255))
     reviews = db.relationship('Review',backref = 'user',lazy = "dynamic")
+    votes = db.relationship('Vote', backref='user', lazy='dynamic')
 
 
     @property
@@ -83,14 +73,34 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
+class Review(db.Model):
 
-class Role(db.Model):
-    __tablename__ = 'roles'
+    __tablename__ = 'reviews'
 
     id = db.Column(db.Integer,primary_key = True)
-    name = db.Column(db.String(255))
-    users = db.relationship('User',backref = 'role',lazy="dynamic")
+    category_id = db.Column(db.Integer)
+    category_title = db.Column(db.String)
+    category_review = db.Column(db.String)
+    posted = db.Column(db.DateTime,default=datetime.utcnow)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
 
 
-    def __repr__(self):
-        return f'User {self.name}'
+    def save_review(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_reviews(cls,id):
+        reviews = Review.query.filter_by(movie_id=id).all()
+        return reviews
+
+    @classmethod
+    def clear_reviews(cls):
+        Review.all_reviews.clear()
+
+    
+        for review in cls.all_reviews:
+            if review.movie_id == id:
+                response.append(review)
+
+        return response
