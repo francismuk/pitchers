@@ -25,7 +25,7 @@ class Category(db.Model):
     # relationship between group and line class
     lines = db.relationship('Line', backref='category', lazy='dynamic')
 
-    def save_group(self):
+    def save_category(self):
         '''
         Function that saves a new category to the groups table
         '''
@@ -33,7 +33,7 @@ class Category(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_groups(cls):
+    def get_category(cls):
         '''
         Function that queries the Groups Table in the database and returns all the information from the Groups Table
         Returns:
