@@ -10,7 +10,7 @@ def load_user(user_id):
 
 class Category(db.Model):
     '''
-    Group class to define the categories for pitches
+    Group class to define the categories for comes
     '''
 
     # Name of the table
@@ -23,7 +23,7 @@ class Category(db.Model):
     name = db.Column(db.String(255))
 
     # relationship between group and line class
-    lines = db.relationship('Line', backref='category', lazy='dynamic')
+    lines = db.relationship('Com', backref='category', lazy='dynamic')
 
     def save_category(self):
         '''
@@ -104,3 +104,88 @@ class Review(db.Model):
                 response.append(review)
 
         return response
+    
+    
+class Com(db.Model):
+    '''
+    Com class to define the comes
+    '''
+
+    # Name of the table
+    __tablename__ = 'comes'
+
+    # id column that is the primary key
+    id = db.Column(db.Integer, primary_key = True)
+
+    # line_content column for the one minute Com a user writes
+    line_content = db.Column(db.String(200))
+
+    # group_id column for linking a line to a specific group
+    group_id = db.Column(db.Integer, db.ForeignKey("groups.id") )
+
+    # user_id column for linking a line to a specific group
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id") )
+
+    # relationship between line and comment class
+    comments = db.relationship('Comment', backref='line', lazy='dynamic')
+
+    def save_com(self):
+        '''
+        Function that saves a new Com to the lines table
+        '''
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_com(cls,group_id):
+        '''
+        Function that queries the Lines Table in the database and returns only information with the specified group id
+        Args:
+            group_id : specific group_id
+        Returns:
+            lines : all the information for lines with the specific group id 
+        '''
+        comes = Com.query.order_by(Com.id.desc()).filter_by(group_id=group_id).all()
+
+        return comes
+
+class Comment(db.Model):
+    '''
+    Comment class to define the feedback from users
+    '''
+
+    # Name of the table
+    __tablename__ = 'comments'
+
+    # id column that is the primary key
+    id = db.Column(db.Integer, primary_key = True)
+
+    # comment_content for the feedback a user gives toa Com
+    comment_content = db.Column(db.String)
+
+    # line_id column for linking a line to a specific line
+    line_id = db.Column(db.Integer, db.ForeignKey("lines.id") )
+
+    # user_id column for linking a line to a specific group
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id") )
+
+    def save_comment(self):
+        '''
+        Function that saves a new comment given as feedback to a Com
+        '''
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_comments(cls,line_id):
+        '''
+        Function that queries the Comments Table in the database and returns only information with the specified line id
+        Args:
+            line_id : specific line_id
+        Returns:
+            comments : all the information for comments with the specific line id 
+        '''
+        comments = Comment.query.filter_by(line_id=line_id).all()
+
+        return comments
+
