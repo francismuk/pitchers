@@ -3,10 +3,10 @@ from flask_script import Manager,Server
 # Connect to models
 from app.models import Group
 from flask_migrate import Migrate,MigrateCommand
-
+import os
 
 app = create_app('production')
-
+SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://francis:1234@localhost/nlist'
 
 # Create manager instance 
