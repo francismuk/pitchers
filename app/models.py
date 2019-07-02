@@ -8,9 +8,11 @@ from datetime import datetime
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+
 class Category(db.Model):
+
     '''
-    Group class to define the categories for comes
+    Catergory class to define the categories for comes
     '''
 
     # Name of the table
@@ -22,12 +24,12 @@ class Category(db.Model):
     # name column for names of categories
     name = db.Column(db.String(255))
 
-    # relationship between group and line class
-    lines = db.relationship('Com', backref='category', lazy='dynamic')
+    # relationship between category and line class
+    comes = db.relationship('Com', backref='category', lazy='dynamic')
 
     def save_category(self):
         '''
-        Function that saves a new category to the groups table
+        Function that saves a new category to the table
         '''
         db.session.add(self)
         db.session.commit()
@@ -35,14 +37,14 @@ class Category(db.Model):
     @classmethod
     def get_category(cls):
         '''
-        Function that queries the Groups Table in the database and returns all the information from the Groups Table
+        Function that queries the Categories Table in the database and returns all the information from the Table
         Returns:
-            groups : all the information in the groups table
+            categoriess : all the information in the categories table
         '''
 
-        groups = Group.query.all()
+        categories = Category.query.all()
 
-        return groups
+        return categories
 
 
 class User(UserMixin,db.Model):
@@ -55,23 +57,22 @@ class User(UserMixin,db.Model):
     profile_pic_path = db.Column(db.String())
     password_hash = db.Column(db.String(255))
     reviews = db.relationship('Review',backref = 'user',lazy = "dynamic")
-    votes = db.relationship('Vote', backref='user', lazy='dynamic')
 
 
     @property
     def password(self):
-        raise AttributeError('You cannnot read the password attribute')
+        raise AttributeError('You cannot read the password attribute')
 
     @password.setter
     def password(self, password):
         self.password_hash = generate_password_hash(password)
-
 
     def verify_password(self,password):
         return check_password_hash(self.password_hash,password)
 
     def __repr__(self):
         return f'User {self.username}'
+
 
 class Review(db.Model):
 
@@ -120,14 +121,14 @@ class Com(db.Model):
     # line_content column for the one minute Com a user writes
     line_content = db.Column(db.String(200))
 
-    # group_id column for linking a line to a specific group
-    group_id = db.Column(db.Integer, db.ForeignKey("groups.id") )
+    # category_id column for linking a line to a specific categopry
+    category_id = db.Column(db.Integer, db.ForeignKey("categories.id") )
 
-    # user_id column for linking a line to a specific group
+    # user_id column for linking a line to a specific category
     user_id = db.Column(db.Integer, db.ForeignKey("users.id") )
 
     # relationship between line and comment class
-    comments = db.relationship('Comment', backref='line', lazy='dynamic')
+    comments = db.relationship('Com', backref='line', lazy='dynamic')
 
     def save_com(self):
         '''
@@ -137,15 +138,15 @@ class Com(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_com(cls,group_id):
+    def get_com(cls,category_id):
         '''
-        Function that queries the Lines Table in the database and returns only information with the specified group id
+        Function that queries the Lines Table in the database and returns only information with the specified id
         Args:
-            group_id : specific group_id
+            category_id : specific category_id
         Returns:
-            lines : all the information for lines with the specific group id 
+            lines : all the information for lines with the specific  id 
         '''
-        comes = Com.query.order_by(Com.id.desc()).filter_by(group_id=group_id).all()
+        comes = Com.query.order_by(Com.id.desc()).filter_by(category_id=category_id).all()
 
         return comes
 
@@ -166,7 +167,7 @@ class Comment(db.Model):
     # line_id column for linking a line to a specific line
     line_id = db.Column(db.Integer, db.ForeignKey("lines.id") )
 
-    # user_id column for linking a line to a specific group
+    # user_id column for linking a line to a specific category
     user_id = db.Column(db.Integer, db.ForeignKey("users.id") )
 
     def save_comment(self):
@@ -177,15 +178,15 @@ class Comment(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_comments(cls,line_id):
+    def get_comments(cls,com_id):
         '''
         Function that queries the Comments Table in the database and returns only information with the specified line id
         Args:
-            line_id : specific line_id
+            com_id : specific line_id
         Returns:
             comments : all the information for comments with the specific line id 
         '''
-        comments = Comment.query.filter_by(line_id=line_id).all()
+        comments = Comment.query.filter_by(com_id=com_id).all()
 
         return comments
 

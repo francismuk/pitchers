@@ -21,8 +21,9 @@ def test():
 
 @manager.shell
 def make_shell_context():
-   return dict(app = app,db = db, User = User,Role = Role,Review =Review)
+   return dict(app = app,db = db)
 
 
 if __name__ == '__main__':
+   app.secret_key='1234'
    manager.run()

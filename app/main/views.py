@@ -20,10 +20,10 @@ def index():
 
 @main.route('/category/new', methods=['GET','POST'])
 @login_required
-def new_group():
+def new_category():
 
     '''
-    View new group route function that returns a page with a form to create a category
+    View new category route function that returns a page with a form to create a category
     '''
 
     form = CategoryForm()
