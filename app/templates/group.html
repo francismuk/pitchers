@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+
+<!-- Styles block -->
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/group.css')}}">
+    
+    <link href="https://fonts.googleapis.com/css?family=Habibi" rel="stylesheet">
+{% endblock %}
+
+<!-- Content block -->
+{% block content %}
+
+    <title> {{ title }} </title>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-4 col-lg4">
+    
+                <h2 class="group-header">
+                    List of {{group.name}}
+                </h2>
+
+            </div>
+
+            <div class="col-md-4 col-lg4">
+                
+            </div>
+
+            <div class="col-md-4 col-lg4">
+
+                <h2 class="line-create">
+                    <a href="/group/line/new/{{group.id}}">
+                        Write A Pitch
+                    </a>
+                </h2>
+                
+            </div>
+
+        </div>
+
+        <hr>
+
+        <ul class="list-unstyled">
+            {{ macro.displayLineList(lines) }}
+        </ul>
+
+    </div>
+
+{% endblock %}

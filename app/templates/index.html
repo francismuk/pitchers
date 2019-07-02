@@ -6,6 +6,7 @@
     {{ super() }}
     <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
     
+    <link href="https://fonts.googleapis.com/css?family=BenchNine|Just+Another+Hand|Luckiest+Guy&display=swap" rel="stylesheet">
 {% endblock %}
 
 <!-- Content block -->
@@ -15,11 +16,9 @@
 
     <div class="container">
 
-        <div class="row">
+            <div class="col-md-4">
 
-            <div class="col-md-4 col-lg-4">
-
-                <h2 class="category-header">
+                <h2 class="header">
                     List of Categories
                 </h2>
                 
@@ -31,19 +30,19 @@
 
             <div class="col-md-4 col-lg-4">
                 <h2 class="category-create">
-                    <a href="/category/new">
-                        Create Category
+                    <a href="/group/new">
+                        Create A Category
                     </a>
                 </h2>
                 
             </div>
 
-        </div>
+        
 
         <hr>
 
         <ul class="list-unstyled">
-            {{ macro.displayCategoryList(categories) }}
+            {{ macro.displayGroupList(groups) }}
         </ul>
 
 
