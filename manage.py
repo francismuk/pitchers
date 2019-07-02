@@ -7,6 +7,7 @@ from flask_migrate import Migrate,MigrateCommand
 
 app = create_app('production')
 
+SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://francis:1234@localhost/nlist'
 
 # Create manager instance 
 manager = Manager(app)
