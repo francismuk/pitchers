@@ -4,9 +4,7 @@ from flask_script import Manager,Server
 from app.models import Group
 from flask_migrate import Migrate,MigrateCommand
 
-# Creating app instance
-# app = create_app('test')
-# app = create_app('development')
+
 app = create_app('production')
 
 

@@ -92,13 +92,10 @@ def single_line(id):
 
     comments = Comment.get_comments(id)
 
-    # vote = Vote.query.all()
-
-    total_votes = Vote.num_vote(line.id)
 
     title = f'Pitch {line.id}'
 
-    return render_template('line.html', title=title, line=line, comments=comments, total_votes=total_votes)
+    return render_template('line.html', title=title, line=line, comments=comments)
 
 @main.route('/line/new/<int:id>', methods=['GET','POST'])
 @login_required
