@@ -1,0 +1,30 @@
+h1{
+    font-family: 'Luckiest Guy', cursive;
+    text-align: center;
+}
+h2{
+    font-family: 'Luckiest Guy', cursive;
+    text-align: center;
+    background-color: yellow;
+}
+h3{
+    font-family: 'Luckiest Guy', cursive;
+    background-color: yellowgreen;
+}
+.main{
+    background-color: darkorange;
+}
+body{
+    background-image: url(https://cdn.pixabay.com/photo/2017/07/27/17/20/books-2546044_960_720.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.lists{
+    font-family: 'Just Another Hand', cursive;
+    font-size: xx-large;
+    color: black;
+
+}
+p{
+    font-family: 'BenchNine', sans-serif;
+}

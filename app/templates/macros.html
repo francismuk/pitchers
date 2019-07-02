@@ -1,20 +1,18 @@
 
 <!-- Display groups -->
 {% macro displayGroupList(group_list) %}
-
-
     {% for group in group_list %}
         <div class="row">
             
-            <div class="col-md-2 col-lg-2">
+            <div class="col-md-2">
                 
             </div>
 
-            <div class=" col-xs-12 col-sm-12 col-md-8 col-lg-8 well category-well">
+            <div class=" col-xs-12">
             
                 <li class="text-center">
 
-                    <h3 class="category-name">
+                    <h3>
 
                         <a href="/group/{{group.id}}">
                             {{ group.name }}   
@@ -23,12 +21,6 @@
                     </h3>
 
                 </li>
-
-            </div>
-
-            <div class="col-md-2 col-lg-2">
-                
-            </div>
 
         </div>
 
@@ -47,7 +39,7 @@
                 
             </div>
 
-            <div class=" col-xs-12 col-sm-12 col-md-8 col-lg-8 well line-well">
+            <div class=" col-xs-12">
             
                 <li class="text-center">
 
@@ -59,7 +51,7 @@
 
                         <br>
 
-                        <small class="pitch-author"> by {{ line.user.username }} </small>
+                        <small class="author"> by {{ line.user.username }} </small>
                         
                     </h3>
 
@@ -89,7 +81,7 @@
                 
             </div>
 
-            <div class=" col-xs-12 col-sm-12 col-md-8 col-lg-8 well comment-well">
+            <div class=" col-xs-12">
             
                 <li>
 
@@ -99,7 +91,7 @@
 
                         <br>
 
-                        <small class="comment-author"> by {{ comment.user.username }} </small>
+                        <p> by {{ comment.user.username }} </p>
                         
                     </h4>
 
@@ -107,7 +99,7 @@
 
             </div>
 
-            <div class="col-md-2 col-lg-2">
+            <div class="col-md-2">
                 
             </div>
 
