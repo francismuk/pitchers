@@ -1,6 +1,5 @@
 from app import create_app,db
 from flask_script import Manager,Server
-# Connect to models
 from app.models import Group
 from flask_migrate import Migrate,MigrateCommand
 import os
