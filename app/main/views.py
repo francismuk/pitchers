@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import Group,Line,Comment,Vote
-from .forms import LineForm,CommentForm,GroupForm,UpvoteForm
+from ..models import Review, User, Category
+from .forms import ReviewForm, UpdateProfile
 from flask_login import login_required,current_user
 
 # Views
