@@ -1,5 +1,5 @@
 # One Minute Pitch
-## An application that allows users to make one minute pitches and get feedback and votes on them.
+## An application that allows users to make one minute pitches and get feedback and votes on them. 3-7-2019
 
 
 ## By Francis Mukuha
@@ -9,9 +9,8 @@ This application is  a web application that allows users to submit a pitch. Also
 
 The pitches are organized by categories. Examples of categories: <br> 
 - pickup lines
-- interview pitches
-- product pitches
-- promotion pitches
+- creative pitches
+- jokes
 
 ## User Stories
 As a user I would like:
@@ -24,10 +23,10 @@ As a user I would like:
 ## Specifications
 | Behavior        | Input           | Outcome  |
 | ------------- |:-------------:| -----:|
-| Register to be a user | Your email : jane@doe.com <br> Username : jane101 <br> Password : doe1 | New user is registered |
-| Log in | Your email : jane@doe.com <br> Password : doe1 | Logged in |
+| Register to be a user | Your email <br> Username <br> Password  | New user is registered |
+| Log in | Your email <br> Password  | Logged in |
 | Display pitch categories | N/A | List of various pitch categories |
-| See pitches from selected category | **Click** a category | Directed to a page with a list of pitches from the selected category |
+| See pitches from selected category | **Click** add category | Directed to a page with a list of pitches from the selected category |
 | Create a pitch | **Click Create A Pitch** | An authenticated user is directed to a page with a form where the user can create and submit a pitch |
 | See a pitch | **Click** on a pitch | A user is directed to a page containing the pitch, its comments and its votes |
 | Comment on a pitch | **Click Comment** | An authenticated user is directed to a page with a form where the user can create and submit a comment on a pitch |
@@ -39,8 +38,10 @@ As a user I would like:
 
 ## Set-up and Installation
     - Clone the Repo
+      (git clone https://github.com/francismuk/pitchers)
     - Edit the start.sh file with your api key from the news.org website
     - Install python 3.6
+       (sudo apt-get install python3.6)
     - Run chmod a+x start.py
     - Run ./start.py
     
@@ -52,6 +53,6 @@ As a user I would like:
     - Bootstrap
     - CSS
 
-### [License](LICENSE)
+### [License](https://opensource.org/licenses/MIT)
 MIT LIcense
 Copyright (c) Francis Mukuha W
