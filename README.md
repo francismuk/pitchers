@@ -23,7 +23,7 @@ As a user I would like:
 ## Specifications
 | Behavior        | Input           | Outcome  |
 | ------------- |:-------------:| -----:|
-| Register to be a user | Your email <br> Username <br> Password  | New user is registered |
+| Register to be a user | Your email <br> Username <br> Password  | New user is registered and welcome email sent to the user |
 | Log in | Your email <br> Password  | Logged in |
 | Display pitch categories | N/A | List of various pitch categories |
 | See pitches from selected category | **Click** add category | Directed to a page with a list of pitches from the selected category |
