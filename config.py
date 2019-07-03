@@ -50,3 +50,4 @@ config_options = {
     'production': ProdConfig,
     'test': TestConfig
 }
+# DATABASE_URL:  postgres://wwievyfpmoxelu:9a1da47c876ca17241c83c5d2062ba2ef22f9cabd49dc5220ae9964f41c1d249@ec2-54-243-47-196.compute-1.amazonaws.com:5432/da2l6r2rcmj5sj
