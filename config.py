@@ -4,7 +4,7 @@ class Config:
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://francis:1234@localhost/nlist'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOADED_PHOTOS_DEST ='app/static/photos'
-    SECRET_KEY='1234'
+   
     
     
 #  email configurations
